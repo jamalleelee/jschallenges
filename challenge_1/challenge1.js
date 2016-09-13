@@ -1,6 +1,6 @@
 /**
  * Using the LocalStorage API, save the contents of the text box
- * when users click the "save" button. 
+ * when users click the "save" button.
  * Load the saved text when users click the "Load" button.
  *
  * Here's the documentation you need:
@@ -15,7 +15,7 @@ var loadButton = $('#load-button');
  * @return {String}
  */
 function getText() {
-  return $('#save-me').val();
+    return $('#save-me').val();
 }
 
 /**
@@ -23,5 +23,13 @@ function getText() {
  * @param {String} text the stuff you want to put in the box
  */
 function setText(text) {
-  return $('#save-me').val(text);
+    return $('#save-me').val(text);
 }
+
+$('#save-button').on('click', function() {
+    localStorage.setItem('userMessage', getText());
+})
+
+$('#load-button').on('click', function() {
+    setText(localStorage.getItem('userMessage'));
+})
