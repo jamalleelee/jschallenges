@@ -54,6 +54,7 @@ $('#reset').click(function() {
     deathStarShotCount = 0
     deathStarHitCount = 0
     $("body").css("background-color", "#ffdb74");
+    $('#reset').css("background-color", "#ffdb74");
     $('#deathstar-numshots').text(deathStarShotCount);
     $('#deathstar-numhits').text(deathStarHitCount);
     $('#luke-numshots').text(lukeShotCount);
@@ -65,9 +66,11 @@ function lukeShoots() {
     if ((randomNumber() % 2) == 0) {
         lukeHitCount++;
         $("body").css("background-color", "green");
+        $('#reset').css("background-color", "green");
         new Audio("exploding.mp3").play();
     } else {
         $("body").css("background-color", "#ffdb74");
+        $('#reset').css("background-color", "#ffdb74");
         new Audio("sad-trombone.mp3").play();
     }
 }
@@ -76,9 +79,11 @@ function deathStarShoots() {
     if ((randomNumber() % 2) != 0) {
         deathStarHitCount++;
         $("body").css("background-color", "red");
+        $('#reset').css("background-color", "red");
         new Audio("exploding.mp3").play();
     } else {
         $("body").css("background-color", "#ffdb74");
+        $('#reset').css("background-color", "#ffdb74");
         new Audio("sad-trombone.mp3").play();
     }
 }
