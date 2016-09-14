@@ -28,29 +28,64 @@
  *   and how to use it in JS. You will also need to download a sound bite
  */
 
-var teamoneShootCount = 0;
-$("#teamone-shoot").click(function() {
-    lukeShoots();
+var lukeShotCount = 1;
+var lukeHitCount = 0;
+var deathStarShotCount = 1;
+var deathStarHitCount = 0;
+var resetCount = 1;
 
+$('#luke-shoots').click(function() {
+    new Audio("pew.mp3").play();
+    $('#luke-numshots').text(lukeShotCount++);
+    lukeShoots();
+    $('#luke-numhits').text(lukeHitCount);
+})
+
+$('#deathstar-shoots').click(function() {
+    new Audio("pew.mp3").play();
+    $('#deathstar-numshots').text(deathStarShotCount++);
+    deathStarShoots();
+    $('#deathstar-numhits').text(deathStarHitCount);
+})
+
+$('#reset').click(function() {
+    lukeShotCount = 0
+    lukeHitCount = 0
+    deathStarShotCount = 0
+    deathStarHitCount = 0
+    $("body").css("background-color", "#ffdb74");
+    $('#deathstar-numshots').text(deathStarShotCount);
+    $('#deathstar-numhits').text(deathStarHitCount);
+    $('#luke-numshots').text(lukeShotCount);
+    $('#luke-numhits').text(lukeHitCount);
+    $('#num-resets').text(resetCount++);
 })
 
 function lukeShoots() {
-    if (randomNumber() == 1) {
-        var teamoneShootCount = 0;
-        $(teamoneShootCount++);
-        $('#teamone-numshots' + 1);
-
-
-
+    if ((randomNumber() % 2) == 0) {
+        lukeHitCount++;
+        $("body").css("background-color", "green");
+        new Audio("exploding.mp3").play();
     } else {
-        $('#teamone-numshots' + 1);
-
+        $("body").css("background-color", "#ffdb74");
+        new Audio("sad-trombone.mp3").play();
     }
-    return teamoneShootCount;
 }
 
-function randomNumber() {
-    var number = 1 + Math.floor(Math.random() * 2);
-    return number;
+function deathStarShoots() {
+    if ((randomNumber() % 2) != 0) {
+        deathStarHitCount++;
+        $("body").css("background-color", "red");
+        new Audio("exploding.mp3").play();
+    } else {
+        $("body").css("background-color", "#ffdb74");
+        new Audio("sad-trombone.mp3").play();
+    }
+}
 
+
+function randomNumber(min, max) {
+    min = Math.ceil(1);
+    max = Math.floor(1000);
+    return Math.floor(Math.random() * (max - min)) + min;
 }
